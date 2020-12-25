@@ -1,8 +1,10 @@
 from MainUi import Ui_MainWindow
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.Qt import QCursor, QMovie
+# from PyQt5.QtCore import Qt
 from PyQt5.QtCore import Qt
 import sys
+import os
 import resource_rc
 
 
@@ -10,15 +12,18 @@ class Main(Ui_MainWindow, QMainWindow):
     def __init__(self):
         super().__init__()
         # 设置窗体无边框
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        # self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
+        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         # 设置背景透明
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.m_flag = False
 
         self.m_Position = 0
         self.setupUi(self)
-
-        self.gif = QMovie(":/gif/Christmas.gif")
+        if os.path.exists("gif.gif"):
+            self.gif = QMovie("gif.gif")
+        else:
+            self.gif = QMovie(":/gif/Christmas.gif")
         self.giflabel.setMovie(self.gif)
         self.giflabel.setScaledContents(True)
         self.gif.start()
