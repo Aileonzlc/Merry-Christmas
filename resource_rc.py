@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore
+from PyQt5.QtCore import qVersion, qRegisterResourceData, qUnregisterResourceData
 
 qt_resource_data = b"\
 \x00\x0a\x19\x52\
@@ -41727,7 +41727,7 @@ qt_resource_struct_v2 = b"\
 \x00\x00\x01\x76\x94\xd3\x1f\xc0\
 "
 
-qt_version = [int(v) for v in QtCore.qVersion().split('.')]
+qt_version = [int(v) for v in qVersion().split('.')]
 if qt_version < [5, 8, 0]:
     rcc_version = 1
     qt_resource_struct = qt_resource_struct_v1
@@ -41736,9 +41736,9 @@ else:
     qt_resource_struct = qt_resource_struct_v2
 
 def qInitResources():
-    QtCore.qRegisterResourceData(rcc_version, qt_resource_struct, qt_resource_name, qt_resource_data)
+    qRegisterResourceData(rcc_version, qt_resource_struct, qt_resource_name, qt_resource_data)
 
 def qCleanupResources():
-    QtCore.qUnregisterResourceData(rcc_version, qt_resource_struct, qt_resource_name, qt_resource_data)
+    qUnregisterResourceData(rcc_version, qt_resource_struct, qt_resource_name, qt_resource_data)
 
 qInitResources()
